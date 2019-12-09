@@ -22,23 +22,31 @@ def showgraph():
     sadface = ':( '
     color = 'red'
     run = detectos()
+    command = ["termgraph", "data.dat", "--color", color, "--custom-tick", sadface, "--width", "30", "--title", "Mood entry history"]
     if run == "linux":
-        subprocess.call(["termgraph", "data.dat", "--color", color, "--custom-tick", sadface, "--width", "30", "--title", "Mood entry history"])
+        subprocess.call(command)
     else:
-        subprocess.run(["termgraph", "data.dat", "--color", color, "--custom-tick", sadface, "--width", "30", "--title", "Mood entry history"])
+    #assumes Windows
+        subprocess.run(command)
 
 
 def showlatest():
     templist = sort()
+
+    #newest entries to top
     templist.reverse()
     minilist = open("tempdata.dat", "w")
     sadface = ':( '
     color = 'yellow'
+
+    #reversing list and reading from end index to beginning so the graph has latest entry on the bottom
     for i in range(5, -1, -1):
         minilist.write(templist[i]+"\n")
     minilist.close()
     run = detectos()
+    command = ["termgraph", "tempdata.dat", "--color", color, "--custom-tick", sadface, "--width", "20", "--title", "Latest moods"]
     if run == "linux":
-        subprocess.call(["termgraph", "tempdata.dat", "--color", color, "--custom-tick", sadface, "--width", "20", "--title", "Latest moods"])
+        subprocess.call(command)
+    #assumes Windows
     else:
-        subprocess.run(["termgraph", "tempdata.dat", "--color", color, "--custom-tick", sadface, "--width", "20", "--title", "Latest moods"])
+        subprocess.run(command)
