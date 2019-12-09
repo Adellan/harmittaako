@@ -1,4 +1,4 @@
-from showgraph import showgraph
+from showgraph import showgraph, showlatest
 from addentry import addentry
 
 print("Welcome to mood tracker!")
@@ -6,7 +6,8 @@ print("Welcome to mood tracker!")
 
 def start():
     print("")
-    print("[s]how graph")
+    print("[s]how graph (all time)")
+    print("[l]atest entries")
     print("[a]dd entry")
     print("[e]xit")
     print("")
@@ -18,8 +19,10 @@ while True:
     keys = start().lower()
     if keys == "e":
         print("Bye bye!")
-        break;
+        break
     if keys == "s":
         showgraph()
+    if keys == "l":
+        showlatest()
     if keys == "a":
         addentry()
