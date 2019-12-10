@@ -11,6 +11,6 @@ def addentry():
             moods.close()
             return
         else:
-            print("Invalid range")
+            return print("Invalid range")
     else:
         return print("Invalid mood input")
